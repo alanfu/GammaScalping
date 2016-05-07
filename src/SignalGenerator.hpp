@@ -35,23 +35,7 @@ namespace GammaScalping
         {
             Signal signal = Signal::KEEP;
             
-            Volatility vol = (CallOption->get_impv() + PutOption->get_impv()) * 0.5;
-            
-            if(vol_queue.size() == 20)
-            {
-                Volatility moving_average = boost::accumulate(vol_queue, 0.0) / window_size;
-                
-                vol_queue.push_front(moving_average);
-                vol_queue.pop_back();
-                
-            }
-            else if(vol_queue.size() > 20)
-                throw runtime_error("too much element in volatility queue!");
-            else
-                vol_queue.push_front(vol);
-            
-            
-            
+            //=========== please use your own trading idea :) ==========//
             
             return signal;
         }
