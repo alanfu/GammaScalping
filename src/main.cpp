@@ -13,10 +13,20 @@
 #include "Options.hpp"
 #include "SignalGenerator.hpp"
 #include "Backtester.hpp"
+#include "configuration.hpp"
+#include <boost/filesystem.hpp>
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
+    
+    boost::filesystem::path cd(__FILE__);
+    
+    cd.remove_leaf();
+    const string filename = cd.string() + "/config.cfg";
+    AppConfig config;
+    
+    config.createAppConfig(filename);
     auto StockData_ptr = boost::make_shared<GammaScalping::StockDataWarehouse>();
     auto OptionData_ptr = boost::make_shared<GammaScalping::OptionDataWarehouse>();
     
